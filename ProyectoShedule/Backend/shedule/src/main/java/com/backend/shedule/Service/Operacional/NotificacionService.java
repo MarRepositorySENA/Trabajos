@@ -1,0 +1,12 @@
+package com.backend.shedule.Service.Operacional;
+
+import org.springframework.stereotype.Service;
+
+import com.backend.shedule.Entity.Operacional.Notificacion;
+import com.backend.shedule.IService.Operacional.INotificacionService;
+import com.backend.shedule.Service.BaseService.BaseService;
+
+@Service
+public class NotificacionService extends BaseService<Notificacion> implements INotificacionService{
+
+}

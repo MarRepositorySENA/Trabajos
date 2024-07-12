@@ -1,0 +1,11 @@
+package com.backend.shedule.Service.Operacional;
+
+import org.springframework.stereotype.Service;
+
+import com.backend.shedule.Entity.Operacional.Programa;
+import com.backend.shedule.IService.Operacional.IProgramaService;
+import com.backend.shedule.Service.BaseService.BaseService;
+@Service
+public class ProgramaService extends BaseService<Programa> implements IProgramaService{
+
+}
