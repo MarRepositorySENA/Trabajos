@@ -1,70 +1,34 @@
-function loadTable() {
-    $.ajax({
-        url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/",
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json" //El tipo de contenido es tipo json, referencia la misma estrucutra de CrossOrigin del backend
-        }
-    }).done(
-        function (item) {
-            variable = ""
-            item.forEach(function (Elementos, posicion, array) {
-                variable += `<tr>
-                            <td>` + parseInt(posicion + 1) + `</td> 
-                            <td>` + Elementos.name + `</td> 
-                            <td> <button type="button" class="btn btn-success" onclick="findById(${Elementos.id})"><i class='bx bx-search'></i></button>
-                                <button type="button" class="btn btn-danger" onclick="Delete(${Elementos.id})"><i class='bx bx-trash'></i></button>
-                            </td> 
-                            </tr> `
 
-            });
-
-            $("#tablaPais").html(variable)
-        }
-    )
-}
 //Guardar cabina
 function saveCountries() {
+    id= $("#id").val();
+    verificarId= !!id
+    urlCountries = verificarId ? "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/"+ id : "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/"
+    metodo= verificarId ? "PUT" : "POST"
+
+    
+
     var nombrePais = $("#nombrePais").val(); // Obtiene el valor del campo
-    if (!nombrePais) {
-        
-        // Si el campo está vacío, muestra una alerta usando SweetAlert2
-        Swal.fire({
-            icon: 'warning',
-            title: 'Campo vacío',
-            text: 'Por favor, ingresa el nombre del país.',
-            confirmButtonText: 'OK'
-        });
-        return; // Sale de la función si el campo está vacío
-    }
 
     var datos = {
         name: $("#nombrePais").val(),//val sirve para captura o  envie datos dentro de los parentesis al frontend
     }
     $.ajax({
-        url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/",
+        url: urlCountries,
         data: JSON.stringify(datos),
-        method: "POST",
+        method: metodo,
         headers: {
             "Content-Type": "application/json"
         }
     }).done(
         function (item) {
-            loadTable();
-            clearData()
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo guardar el país. Inténtalo de nuevo más tarde.',
-                confirmButtonText: 'OK'
-            });
-
-        });
+            loadCountries();
+            clearCountryForm();
+    })
 }
 
 //Busqueda por id
-function findById(id) {
+function findCountryById(id) {
     $.ajax({
         url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/" + id,
         method: "GET",
@@ -79,31 +43,8 @@ function findById(id) {
     )
 }
 
-
-function updateCountries() {
-    
-
-
-    id = $("#id").val()
-
-    var datos = {
-        name: $("#nombrePais").val(),//val sirve para captura o  envie datos dentro de los parentesis al frontend
-    }
-    $.ajax({
-        url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/" + id,
-        data: JSON.stringify(datos),
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).done(
-        function (item) {
-            loadTable();
-            clearData()
-        })
-}
 //Eliminar
-function Delete(id) {
+function deleteCountry(id) {
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -122,7 +63,7 @@ function Delete(id) {
                 }
             }).done(
                 function (item) {
-                    loadTable()
+                    loadCountries();
 
                     Swal.fire({
                         title: "Deleted!",
@@ -144,26 +85,26 @@ function Delete(id) {
     });
 }
 
-function loadCountries() {
-    $.ajax({
-        url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/",
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).done(function (countries) {
-        let options = "";
-        countries.forEach(function (country) {
-            options += `<option value="${country.id}">${country.name}</option>`;
-        });
-        $("#countryId").html(options);
-    });
-}
+// function loadCountries() {
+//     $.ajax({
+//         url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/",
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     }).done(function (countries) {
+//         let options = "";
+//         countries.forEach(function (country) {
+//             options += `<option value="${country.id}">${country.name}</option>`;
+//         });
+//         $("#countryId").html(options);
+//     });
+// }
 
 
 
 
-function clearData() {
+function clearCountryForm() {
     $("#id").val(""),
         $("#nombrePais").val("")
 

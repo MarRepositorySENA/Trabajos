@@ -23,7 +23,6 @@
                         <input type="text" class="form-control" id="nombrePais" placeholder="Ingrese el nombre" required>
                     </div>
                     <button type="button" class="btn btn-primary" onclick="saveCountries()">Guardar</button>
-                    <button type="button" class="btn btn-success"  onclick="updateCountries()">Modificar</button>
                 </form>
             </div>
 
@@ -49,8 +48,9 @@
     <script src="/Assets/Lib/node_modules/jquery/dist/jquery.js"></script>
     <script src="/Assets/Lib/node_modules/sweetalert2/dist/sweetalert2.js"></script>
     <script src="/Js/Parameter/Countries.js"></script>
+    <script src="/Js/Util/loadData.js"></script>
     <script>
-        loadTable();
+        loadCountries();
     </script>
 
 </body>

@@ -1,30 +1,13 @@
-function loadTable() {
-    $.ajax({
-        url: "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/",
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json" //El tipo de contenido es tipo json, referencia la misma estrucutra de CrossOrigin del backend
-        }
-    }).done(
-        function (item) {
-            variable = ""
-            item.forEach(function (Elementos, posicion, array) {
-                variable += `<tr>
-                            <td>` + parseInt(posicion + 1) + `</td> 
-                            <td>` + Elementos.name + `</td> 
-                            <td> <button type="button" class="btn btn-success" onclick="findById(${Elementos.id})"><i class='bx bx-search'></i></button>
-                                <button type="button" class="btn btn-danger" onclick="Delete(${Elementos.id})"><i class='bx bx-trash'></i></button>
-                            </td> 
-                            </tr> `
 
-            });
-
-            $("#tablaCabinas").html(variable)
-        }
-    )
-}
 //Funcion guardar
 function saveCabinType(){
+    id= $("#id").val();
+    console.log("save", id)
+    verificarId= !!id
+    urlCountries = verificarId ? "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/"+ id : "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/"
+    metodo= verificarId ? "PUT" : "POST"
+
+
     var nombreCabina = $("#nombreCabina").val(); 
     
     if (!nombreCabina) {
@@ -40,7 +23,7 @@ function saveCabinType(){
     var datos = {
         name: $("#nombreCabina").val(),
     }
-    console.log("mensajedatos", datos)
+   
     $.ajax({
         url: "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/",
         data: JSON.stringify(datos),
@@ -50,8 +33,8 @@ function saveCabinType(){
         }
     }).done(
         function (item) {
-            loadTable();
-            clearData()
+            loadCabinTypes()
+            clearCabinTypesForm()
         }).fail(function (jqXHR, textStatus, errorThrown) {
             Swal.fire({
                 icon: 'error',
@@ -64,7 +47,7 @@ function saveCabinType(){
 }
 
 //Busqueda por id
-function findById(id) {
+function findCabinTypesById(id) {
     $.ajax({
         url: "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/"+id,
         method: "GET",
@@ -75,34 +58,15 @@ function findById(id) {
         function (item) {
                 $("#id").val(item.id),
                 $("#nombreCabina").val(item.name)
+                clearCabinTypesForm();
         }
     )
 }
 
 
-function updateCabinType() {
 
-    id=$("#id").val()
-  
-    var datos = {
-        name: $("#nombreCabina").val(),//val sirve para captura o  envie datos dentro de los parentesis al frontend
-    }
-    $.ajax({
-        url: "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/"+id,
-        data: JSON.stringify(datos),
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).done(
-        function (item) {
-            loadTable();
-            clearData()
-        }
-    )
-}
 //Eliminar
-function Delete(id) {
+function DeleteCabinTypes(id) {
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -121,7 +85,7 @@ function Delete(id) {
                 }
             }).done(
                 function (item) {
-                    loadTable()
+                    loadCabynTypes();
 
                     Swal.fire({
                         title: "Deleted!",
@@ -151,7 +115,7 @@ function Delete(id) {
 
 
 
-function clearData() {
+function clearCabinTypesForm() {
         $("#id").val(""),
         $("#nombreCabina").val("")
        

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="/Assets/Css/Parameter/Offices.css">
     <link rel="stylesheet" href="/Assets/Lib/node_modules/boxicons/css/boxicons.css">
 </head>
+
 <body>
 
     <div class="container mt-5">
@@ -32,8 +34,8 @@
                     </div>
                     <div class="form-group">
                         <label for="countryId" class="form-label">País</label>
-                        <select type="text" class="form-control" name="countryId" id="countryId" required> 
-                           <!-- <option selected="" selected disabled hidden>--- Seleccione ---</option> -->
+                        <select type="text" class="form-control" name="countryId" id="countryId" required>
+                         <option selected="" selected disabled hidden>--- SELECCIONE ---</option> 
                         </select>
                     </div>
 
@@ -46,7 +48,7 @@
             <div class="col-md-8">
                 <h4>Listado de Oficinas</h4>
                 <table class="table table-hover table-bordered">
-                    <thead> 
+                    <thead>
                         <tr>
                             <th>#</th>
                             <th>Titulo</th>
@@ -56,7 +58,7 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="tablaOficina" >
+                    <tbody id="tablaOficina">
                         <!-- Aquí se agregarán las filas dinámicamente -->
                     </tbody>
                 </table>
@@ -67,13 +69,13 @@
     <script src="/Assets/Lib/node_modules/jquery/dist/jquery.js"></script>
     <script src="/Assets/Lib/node_modules/sweetalert2/dist/sweetalert2.js"></script>
     <script src="/Js/Parameter/Offices.js"></script>
-    <script src="/Js/Parameter/Countries.js"></script>
+    <script src="/Js/Util/loadData.js"></script>
     <script>
-       
-            loadTable();
-            loadCountries();
-        
+        loadOffices();
+        loadCountries();
+
     </script>
 
 </body>
+
 </html>
