@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 public class Offices extends BaseEntity{
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "country_id", nullable = false, unique = true)
+	@JoinColumn(name = "country_id", nullable = false)
 	private Countries countryId;
 
 	@Column(name = "title", length = 45, nullable = false)

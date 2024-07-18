@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros Oficinas</title>
+    <link rel="stylesheet" href="/Assets/Lib/node_modules/sweetalert2/dist/sweetalert2.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Assets/Css/Parameter/Offices.css">
+    <link rel="stylesheet" href="/Assets/Lib/node_modules/boxicons/css/boxicons.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Formulario de registro -->
+            <div class="col-md-4">
+                <h4>Registrar Oficinas</h4>
+                <form id="registroForm">
+                    <input type="hidden" id="id">
+                    <div class="form-group">
+                        <label for="title">Titulo</label>
+                        <input type="text" class="form-control" id="title" placeholder="Ingrese el nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefono</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Ingrese el nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contacto</label>
+                        <input type="text" class="form-control" id="contact" placeholder="Ingrese el nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="countryId" class="form-label">País</label>
+                        <select type="text" class="form-control" name="countryId" id="countryId" required> 
+                           <!-- <option selected="" selected disabled hidden>--- Seleccione ---</option> -->
+                        </select>
+                    </div>
+
+
+                    <button type="button" class="btn btn-primary" onclick="saveOffices()">Guardar</button>
+                </form>
+            </div>
+
+            <!-- Tabla de datos -->
+            <div class="col-md-8">
+                <h4>Listado de Oficinas</h4>
+                <table class="table table-hover table-bordered">
+                    <thead> 
+                        <tr>
+                            <th>#</th>
+                            <th>Titulo</th>
+                            <th>Telefono</th>
+                            <th>Contacto</th>
+                            <th>País</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaOficina" >
+                        <!-- Aquí se agregarán las filas dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Assets/Lib/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/Assets/Lib/node_modules/sweetalert2/dist/sweetalert2.js"></script>
+    <script src="/Js/Parameter/Offices.js"></script>
+    <script src="/Js/Parameter/Countries.js"></script>
+    <script>
+       
+            loadTable();
+            loadCountries();
+        
+    </script>
+
+</body>
+</html>

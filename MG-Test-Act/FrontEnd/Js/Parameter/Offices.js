@@ -1,0 +1,110 @@
+function loadTable() {
+    $.ajax({
+        url: "http://localhost:9000/session3/api/v1/session3/Parameter/Offices/",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).done(function (item) {
+        let variable = "";
+        item.forEach(function (Elementos, posicion) {
+            variable += `<tr>
+                            <td>${parseInt(posicion + 1)}</td> 
+                            <td>${Elementos.title}</td> 
+                            <td>${Elementos.phone}</td> 
+                            <td>${Elementos.contact}</td> 
+                            <td>${Elementos.countryId.name}</td> 
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="findById(${Elementos.id})"><i class='bx bx-search'></i></button>
+                                <button type="button" class="btn btn-danger" onclick="Delete(${Elementos.id})"><i class='bx bx-trash'></i></button>
+                            </td> 
+                        </tr>`;
+        });
+        $("#tablaOficina").html(variable);
+    });
+}
+
+
+
+//Funcion guardar
+function saveOffices(){
+    id = $("#id").val();
+    verificarId= !!id
+    urlOficina = verificarId ? "http://localhost:9000/session3/api/v1/session3/Parameter/Offices/"+id : "http://localhost:9000/session3/api/v1/session3/Parameter/Offices/"
+    metodo= verificarId ? "PUT" : "POST"
+
+    var title = $("#title").val();
+    var phone = $("#phone").val();
+    var contact = $("#contact").val();
+    var countryId = $("#countryId").val();
+
+    var datos = {
+        title: $("#title").val(),
+        phone: $("#phone").val(),
+        contact: $("#contact").val(),
+        countryId: {
+            id: countryId
+        }
+    }
+    $.ajax({
+        url: urlOficina,
+        data: JSON.stringify(datos),
+        method: metodo,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).done(
+        function (item) {
+
+
+            loadTable();
+            clearData()
+        })
+
+        
+}
+
+
+
+//buscar por id
+function findById(id) {
+    $.ajax({
+        url: "http://localhost:9000/session3/api/v1/session3/Parameter/Offices/" + id,
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).done(
+        function (item) {
+            $("#id").val(item.id),
+                $("#title").val(item.title),
+                $("#phone").val(item.phone),
+                $("#contact").val(item.contact),
+                $("#countryId").val(item.countryId.id)
+        }
+    )
+
+}
+
+
+function Delete(id){
+    $.ajax({
+        url:"http://localhost:9000/session3/api/v1/session3/Parameter/Offices/"+id,
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).done(
+        function (item){
+            loadTable();
+        }
+    )
+}
+
+function clearData() {
+    $("#id").val("");
+    $("#title").val("");
+    $("#phone").val("");
+    $("#contact").val("");
+    $("#countryId").val("");
+}

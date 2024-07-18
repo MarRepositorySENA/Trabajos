@@ -25,7 +25,7 @@ public class Tickets extends BaseEntity {
 	private Shedules sheduleId;
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "cabin_type_id", nullable = false, unique = true)
+	@JoinColumn(name = "cabin_type_id", nullable = true, unique = true)
 	private CabinTypes cabinTypeId;
 	
 	@Column(name = "first_name", length = 45, nullable = false)
@@ -71,7 +71,6 @@ public class Tickets extends BaseEntity {
 	public void setSheduleId(Shedules sheduleId) {
 		this.sheduleId = sheduleId;
 	}
-
 	public CabinTypes getCabinTypeId() {
 		return cabinTypeId;
 	}

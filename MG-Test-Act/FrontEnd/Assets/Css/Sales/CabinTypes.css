@@ -1,0 +1,14 @@
+thead {
+    background-color: rgb(20, 133, 133);
+    color: white;
+}
+
+/* Estilo para el cuerpo de la tabla */
+tbody {
+    background-color: white;
+}
+
+/* Estilo para los bordes de la tabla */
+table, th, td {
+    border: 1px solid rgb(15, 230, 230) !important;
+}
