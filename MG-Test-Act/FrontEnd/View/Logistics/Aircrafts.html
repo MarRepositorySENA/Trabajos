@@ -46,15 +46,15 @@
                     <label for="businessSeats" class="form-label">Asientos Ejecutivos</label>
                     <input type="number" class="form-control" id="businessSeats">
                 </div>
-                <div class="col-sm-4">
+             <!--  <div class="col-sm-4">
                     <label for="select" class="form-label">selecionar</label>
                     <select name="seleccionar" id="seleccionar" >
                         <option value="xxx">xxx</option>
                     </select>
-                </div>
+                </div>--> 
+
                 <div class="mt-2">
                     <button class="btn btn-primary" onclick="saveAircrafts()">Guardar</button>
-                    <button class="btn btn-success" onclick="updateAircrafts()">Modificar</button>
                 </div>
                 
             </div>
@@ -90,8 +90,9 @@
 <script src="/Assets/Lib/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script src="/Assets/Lib/node_modules/jquery/dist/jquery.js"></script>    
 <script src="/Js/Logistics/Aircrafts.js"></script>
+<script src="/Js/Util/loadData.js"></script>
 <script>
-    loadTable();
+    loadAircrafs()
     select();
 </script>
 
