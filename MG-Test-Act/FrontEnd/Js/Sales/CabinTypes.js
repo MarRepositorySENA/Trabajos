@@ -1,10 +1,36 @@
+//Tabla Cabinas
+function loadCabinTypes() {
+    $.ajax({
+        url: "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json" //El tipo de contenido es tipo json, referencia la misma estrucutra de CrossOrigin del backend
+        }
+    }).done(
+        function (item) {
+            variable = ""
+            item.forEach(function (Elementos, posicion, array) {
+                variable += `<tr>
+                            <td>` + parseInt(posicion + 1) + `</td> 
+                            <td>` + Elementos.name + `</td> 
+                            <td> <button type="button" class="btn btn-success" onclick="findCabinTypesById(${Elementos.id})"><i class='bx bx-search'></i></button>
+                                <button type="button" class="btn btn-danger" onclick="DeleteCabinTypes(${Elementos.id})"><i class='bx bx-trash'></i></button>
+                            </td> 
+                            </tr> `
+
+            });
+
+            $("#tablaCabinas").html(variable)
+        }
+    )
+}
+
 
 //Funcion guardar
 function saveCabinType(){
     id= $("#id").val();
-    console.log("save", id)
     verificarId= !!id
-    urlCountries = verificarId ? "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/"+ id : "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/"
+    urlCabinTypes = verificarId ? "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/"+ id : "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/"
     metodo= verificarId ? "PUT" : "POST"
 
 
@@ -25,15 +51,15 @@ function saveCabinType(){
     }
    
     $.ajax({
-        url: "http://localhost:9000/session3/api/v1/session3/Sales/CabinTypes/",
+        url: urlCabinTypes,
         data: JSON.stringify(datos),
-        method: "POST",
+        method: metodo,
         headers: {
             "Content-Type": "application/json"
         }
     }).done(
         function (item) {
-            loadCabinTypes()
+            loadCabinTypes();
             clearCabinTypesForm()
         }).fail(function (jqXHR, textStatus, errorThrown) {
             Swal.fire({
@@ -58,7 +84,6 @@ function findCabinTypesById(id) {
         function (item) {
                 $("#id").val(item.id),
                 $("#nombreCabina").val(item.name)
-                clearCabinTypesForm();
         }
     )
 }
@@ -85,7 +110,7 @@ function DeleteCabinTypes(id) {
                 }
             }).done(
                 function (item) {
-                    loadCabynTypes();
+                    loadCabinTypes();
 
                     Swal.fire({
                         title: "Deleted!",

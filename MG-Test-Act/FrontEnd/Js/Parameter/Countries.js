@@ -1,3 +1,26 @@
+//Cargar tabla Pais
+function loadCountries() {
+    $.ajax({
+        url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).done(function (item) {
+        let variable = "";
+        item.forEach(function (Elementos, posicion) {
+            variable += `<tr>
+                            <td>${parseInt(posicion + 1)}</td> 
+                            <td>${Elementos.name}</td> 
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="findCountryById(${Elementos.id})"><i class='bx bx-search'></i></button>
+                                <button type="button" class="btn btn-danger" onclick="deleteCountry(${Elementos.id})"><i class='bx bx-trash'></i></button>
+                            </td> 
+                        </tr>`;
+        });
+        $("#tablaPais").html(variable);
+    });
+}
 
 //Guardar cabina
 function saveCountries() {
@@ -84,23 +107,6 @@ function deleteCountry(id) {
         }
     });
 }
-
-// function loadCountries() {
-//     $.ajax({
-//         url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/",
-//         method: "GET",
-//         headers: {
-//             "Content-Type": "application/json"
-//         }
-//     }).done(function (countries) {
-//         let options = "";
-//         countries.forEach(function (country) {
-//             options += `<option value="${country.id}">${country.name}</option>`;
-//         });
-//         $("#countryId").html(options);
-//     });
-// }
-
 
 
 

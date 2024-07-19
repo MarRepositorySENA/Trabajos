@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros Roles</title>
+    <link rel="stylesheet" href="/Assets/Lib/node_modules/sweetalert2/dist/sweetalert2.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Assets/Css/Security/Roles.css">
+    <link rel="stylesheet" href="/Assets/Lib/node_modules/boxicons/css/boxicons.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Formulario de registro -->
+            <div class="col-md-4">
+                <h4>Registrar Roles</h4>
+                <form id="registroForm">
+                    <input type="hidden" id="id">
+                    <div class="form-group">
+                        <label for="title">Titulo Rol</label>
+                        <input type="text" class="form-control" id="title" placeholder="Ingrese el titulo" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveRoles()">Guardar</button>
+                </form>
+            </div>
+
+            <!-- Tabla de datos -->
+            <div class="col-md-8">
+                <h4>Listado de Roles</h4>
+                <table class="table table-hover table-bordered">
+                    <thead> 
+                        <tr>
+                            <th>#</th>
+                            <th>Titulo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaRoles" >
+                        <!-- Aquí se agregarán las filas dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Assets/Lib/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/Assets/Lib/node_modules/sweetalert2/dist/sweetalert2.js"></script>
+    <script src="/Js/Security/Roles.js"></script>
+    <script src="/Js/Util/loadData.js"></script>
+    <script>
+        loadCountries();
+    </script>
+
+</body>
+</html>
