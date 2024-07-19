@@ -1,6 +1,6 @@
 package BackendSession3.BackendSession3.Entity.Security;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import BackendSession3.BackendSession3.Entity.BaseEntity.BaseEntity;
 import BackendSession3.BackendSession3.Entity.Parameter.Offices;
@@ -31,18 +31,16 @@ public class Users extends BaseEntity{
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
 	
+	@Column(name = "birth_date")
+	private LocalDate birthdate;
+	
+	@Column(name = "active")
+	private Boolean active;
+	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "office_id", nullable = false, unique = false)
 	private Offices officeId;
 	
-	
-	@Column(name = "birthdate")
-	private Date birthdate;
-	
-	@Column(name = "active")
-	private Boolean active;
-
-
 	public Roles getRoleId() {
 		return roleId;
 	}
@@ -83,19 +81,11 @@ public class Users extends BaseEntity{
 		this.lastName = lastName;
 	}
 
-	public Offices getOfficeId() {
-		return officeId;
-	}
-
-	public void setOfficeId(Offices officeId) {
-		this.officeId = officeId;
-	}
-
-	public Date getBirthdate() {
+	public LocalDate getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -106,6 +96,22 @@ public class Users extends BaseEntity{
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+
+	public Offices getOfficeId() {
+		return officeId;
+	}
+
+	public void setOfficeId(Offices officeId) {
+		this.officeId = officeId;
+	}
+
+	
+	
+	
+	
+
+
+
 	
 	
 }

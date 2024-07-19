@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros Roles</title>
+    <link rel="stylesheet" href="/Assets/Lib/node_modules/sweetalert2/dist/sweetalert2.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Assets/Css/Security/Roles.css">
+    <link rel="stylesheet" href="/Assets/Lib/node_modules/boxicons/css/boxicons.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <!-- Formulario de registro -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h4>Registrar Roles</h4>
+                <form id="registroForm">
+                    <!--Primera Fila-->
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="firstName">Primer Nombre</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Ingrese el Nombre" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="lastName">Apellidos</label>
+                            <input type="text" class="form-control" id="lastName"
+                                placeholder="Ingrese una apellidos" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="email">Fecha</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                    </div>
+                    <!--Segunda Fila-->
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="title">Titulo Rol</label>
+                            <input type="text" class="form-control" id="title" placeholder="Ingrese el título" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="description">Descripción</label>
+                            <input type="text" class="form-control" id="description"
+                                placeholder="Ingrese una descripción" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">Fecha</label>
+                            <input type="date" class="form-control" id="date" required>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveRoles()">Guardar</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Tabla de datos -->
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Listado de Roles</h4>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Titulo</th>
+                            <th>Descripción</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaRoles">
+                        <!-- Aquí se agregarán las filas dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/Assets/Lib/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/Assets/Lib/node_modules/sweetalert2/dist/sweetalert2.js"></script>
+    <script src="/Js/Security/Roles.js"></script>
+    <script src="/Js/Util/loadData.js"></script>
+    <script>
+        loadRoles();
+    </script>
+
+</body>
+
+</html>

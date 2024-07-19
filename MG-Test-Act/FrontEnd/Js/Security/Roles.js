@@ -1,43 +1,57 @@
-//Cargar tabla Pais
-function loadCountries() {
+//Tabla Roles
+function loadRoles() {
     $.ajax({
-        url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/",
+        url: "http://localhost:9000/session3/api/v1/session3/Security/Roles/",
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json" 
         }
-    }).done(function (item) {
-        let variable = "";
-        item.forEach(function (Elementos, posicion) {
-            variable += `<tr>
-                            <td>${parseInt(posicion + 1)}</td> 
-                            <td>${Elementos.name}</td> 
-                            <td>
-                                <button type="button" class="btn btn-success" onclick="findCountryById(${Elementos.id})"><i class='bx bx-search'></i></button>
-                                <button type="button" class="btn btn-danger" onclick="deleteCountry(${Elementos.id})"><i class='bx bx-trash'></i></button>
+    }).done(
+        function (item) {
+            variable = ""
+            item.forEach(function (Elementos, posicion, array) {
+                variable += `<tr>
+                            <td>` + parseInt(posicion + 1) + `</td> 
+                            <td>` + Elementos.title + `</td> 
+                            <td> <button type="button" class="btn btn-success" onclick="findRolesById(${Elementos.id})"><i class='bx bx-search'></i></button>
+                                <button type="button" class="btn btn-danger" onclick="DeleteRoles(${Elementos.id})"><i class='bx bx-trash'></i></button>
                             </td> 
-                        </tr>`;
-        });
-        $("#tablaPais").html(variable);
-    });
+                            </tr> `
+
+            });
+
+            $("#tablaRoles").html(variable)
+        }
+    )
 }
 
-//Guardar cabina
-function saveCountries() {
+//Guardar Roles
+function saveRoles(){
     id= $("#id").val();
+    console.log("id",id)
     verificarId= !!id
-    urlCountries = verificarId ? "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/"+ id : "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/"
+    urlRoles = verificarId ? "http://localhost:9000/session3/api/v1/session3/Security/Roles/"+ id : "http://localhost:9000/session3/api/v1/session3/Security/Roles/"
     metodo= verificarId ? "PUT" : "POST"
 
-    
 
-    var nombrePais = $("#nombrePais").val(); // Obtiene el valor del campo
+    var title = $("#title").val(); 
+    
+    if (!title) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Campo vacío',
+            text: 'Por favor, ingresa el titulo de la cabina.',
+            confirmButtonText: 'OK'
+        });
+        return; 
+    }
 
     var datos = {
-        name: $("#nombrePais").val(),//val sirve para captura o  envie datos dentro de los parentesis al frontend
+        title: $("#title").val(),
     }
+   
     $.ajax({
-        url: urlCountries,
+        url: urlRoles,
         data: JSON.stringify(datos),
         method: metodo,
         headers: {
@@ -45,74 +59,45 @@ function saveCountries() {
         }
     }).done(
         function (item) {
-            loadCountries();
-            clearCountryForm();
-    })
+            loadRoles()
+           
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo guardar el titulo de Roles. Inténtalo nuevamente.',
+                confirmButtonText: 'OK'
+            });
+
+        });
 }
 
 //Busqueda por id
-function findCountryById(id) {
+function findRolesById(id) {
     $.ajax({
-        url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/" + id,
+        url: "http://localhost:9000/session3/api/v1/session3/Security/Roles/"+id,
         method: "GET",
         headers: {
-            "Content-Type": "application/json" //El tipo de contenido es tipo json, referencia la misma estrucutra de CrossOrigin del backend
+            "Content-Type": "application/json" 
         }
     }).done(
         function (item) {
-            $("#id").val(item.id),
-                $("#nombrePais").val(item.name)
+                $("#id").val(item.id),
+                $("#title").val(item.title)
         }
     )
 }
 
-//Eliminar
-function deleteCountry(id) {
-    Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/" + id,
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).done(
-                function (item) {
-                    loadCountries();
-
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                }
-            ).fail(
-                function (item) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: item.responseJSON.message,
-                        footer: '<a href="#">Why do I have this issue?</a>'
-                    });
-                }
-            )
+function DeleteRoles(id){
+    $.ajax ({
+        url: "http://localhost:9000/session3/api/v1/session3/Security/Roles/"+id,
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json" 
         }
-    });
+    }).done (
+        function(item){
+            loadRoles()
+        }
+    )
 }
-
-
-
-function clearCountryForm() {
-    $("#id").val(""),
-        $("#nombrePais").val("")
-
-}
-
