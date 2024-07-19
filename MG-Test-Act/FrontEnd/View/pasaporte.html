@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../Assets/Css/pasaporte.css">
+    <title>Vista de Pasaporte</title>
+</head>
+<body>
+    <div class="container">
+        <div class="passport-label" id="passportOwner">Este pasaporte pertenece a:</div>
+        <img id="passportImage" class="passport-image" src="" alt="Imagen del Pasaporte">
+        <button class="close-button" onclick="window.close()">Cerrar Ventana</button>
+    </div>
+    <script>
+        
+        const nombre = sessionStorage.getItem('pasaporteNombre');
+        const foto = sessionStorage.getItem('pasaporteFoto');
+
+        // Establecer los valores en el HTML
+        document.getElementById('passportOwner').textContent = `Este pasaporte pertenece a: ${nombre}`;
+        document.getElementById('passportImage').src = `data:image/png;base64,${foto}`;
+
+        // Limpiar los datos del sessionStorage
+        sessionStorage.removeItem('pasaporteNombre');
+        sessionStorage.removeItem('pasaporteFoto');
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0; /* Fondo gris claro para mejorar contraste */
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Espacio entre elementos */
+    height: 100%;
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff; /* Fondo blanco para la ventana emergente */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra sutil */
+}
+.passport-label {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.passport-image {
+    border: 1px solid #ddd;
+    padding: 10px;
+    max-width: 100%;
+    max-height: 300px;
+}
+.close-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff; /* Color de fondo azul */
+    color: white; /* Color de texto blanco */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados */
+}
+.close-button:hover {
+    background-color: #0056b3; /* Color de fondo azul oscuro en hover */
+}

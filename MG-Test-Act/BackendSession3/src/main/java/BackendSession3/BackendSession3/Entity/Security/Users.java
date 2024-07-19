@@ -14,16 +14,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="Users")
 public class Users extends BaseEntity{
-
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "role_id", nullable = false, unique = true)
-	private Roles roleId;
-	
-	@Column(name = "email", length = 100, nullable = false)
-	private String email;
-	
-	@Column(name = "password", length = 45, nullable = false)
-	private String password;
 	
 	@Column(name = "first_name", length = 45, nullable = false)
 	private String firstName;
@@ -31,11 +21,21 @@ public class Users extends BaseEntity{
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
 	
+	@Column(name = "email", length = 100, nullable = false)
+	private String email;
+	
+	@Column(name = "password", length = 45, nullable = false)
+	private String password;
+		
 	@Column(name = "birth_date")
 	private LocalDate birthdate;
 	
 	@Column(name = "active")
 	private Boolean active;
+	
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "role_id", nullable = false, unique = true)
+	private Roles roleId;
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "office_id", nullable = false, unique = false)

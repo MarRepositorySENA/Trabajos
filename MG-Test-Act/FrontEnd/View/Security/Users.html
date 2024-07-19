@@ -31,24 +31,26 @@
                                 placeholder="Ingrese una apellidos" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="email">Fecha</label>
+                            <label for="email">E-mail</label>
                             <input type="email" class="form-control" id="email" required>
                         </div>
                     </div>
                     <!--Segunda Fila-->
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="title">Titulo Rol</label>
-                            <input type="text" class="form-control" id="title" placeholder="Ingrese el título" required>
+                            <label for="birthDate">Fecha Nacimiento</label>
+                            <input type="date" class="form-control" id="birthDate" placeholder="Ingrese la fecha de nacimiento" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="description">Descripción</label>
-                            <input type="text" class="form-control" id="description"
-                                placeholder="Ingrese una descripción" required>
+                            <label for="active">Estado</label>
+                            <input type="text" class="form-control" id="active"
+                                placeholder="" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="date">Fecha</label>
-                            <input type="date" class="form-control" id="date" required>
+                            <label for="rolId" class="form-label">Rol</label>
+                            <select type="text" class="form-control" name="rolId" id="rolId" required>
+                             
+                            </select>
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary" onclick="saveRoles()">Guardar</button>

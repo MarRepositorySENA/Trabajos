@@ -1,24 +1,25 @@
-function selectCountries(){
-    
+let countryMap = {};
+
+function selectCountries() {
     $.ajax({
         url: "http://localhost:9000/session3/api/v1/session3/Parameter/Countries/",
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
-    }).done(
-        function (item) {
-            variable = "<option selected disabled hidden>--- SELECCIONE ---</option>"
-            item.forEach(function (Elementos, posicion, array) {
+    }).done(function (item) {
+        let variable = "<option selected disabled hidden>--- SELECCIONE ---</option>";
+        item.forEach(function (Elementos) {
+            variable += `<option value="${Elementos.id}">${Elementos.name}</option>`;
+            countryMap[Elementos.id] = Elementos.name; // Mapear ID al nombre del país
+        });
 
-                variable += `<option value="${Elementos.id}">${Elementos.name}</option>`
-
-            });
-
-            $("#countryId").html(variable)
-        }
-    )
+        $("#countryId").html(variable);
+    });
 }
+
+selectCountries();
+
 
 
 

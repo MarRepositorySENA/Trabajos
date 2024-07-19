@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmación de la reserva</title>
-    <link rel="stylesheet" href="/Assets/Css/BusquedaVuelos.css">
     <link rel="stylesheet" href="/Assets/Lib/node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/Assets/Lib/node_modules/bootswatch/dist/litera/bootstrap.css">
     <link rel="stylesheet" href="/Assets/Lib/node_modules/boxicons/css/boxicons.css">
     <link rel="stylesheet" href="/Assets/Lib/node_modules/sweetalert2/dist/sweetalert2.css">
+    <link rel="stylesheet" href="/Assets/Css/BusquedaVuelos.css">
 </head>
 
 <body>
@@ -61,17 +61,19 @@
                     </div>
                     <div class="col-md-4">
                         <label for="fecha-nacimiento" class="form-label">Fecha de nacimiento:</label>
-                        <input type="text" class="form-control" id="fecha-nacimiento" placeholder="dd/mm/yyyy">
+                        <input type="date" class="form-control" id="fecha-nacimiento" placeholder="dd/mm/yyyy">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <label for="numero-pasaporte" class="form-label">Número Pasaporte:</label>
-                        <input type="text" class="form-control" id="numero-pasaporte">
+                        <input type="number" class="form-control" id="numero-pasaporte">
                     </div>
                     <div class="col-md-4">
                         <label for="pais-pasaporte" class="form-label">País de pasaporte:</label>
-                        <select class="form-select" id="pais-pasaporte"></select>
+                        <select class="form-select" id="countryId">
+                            <!-- paises -->
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <label for="telefono" class="form-label">Teléfono:</label>
@@ -84,7 +86,7 @@
                         <input type="file" class="form-control" id="foto-pasaporte">
                     </div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-primary mt-4" id="agregar-pasajero">Agregar
+                        <button type="button" class="btn btn-primary mt-4" onclick="guardarPasajero();">Agregar
                             Pasajero</button>
                     </div>
                 </div>
@@ -103,27 +105,30 @@
                         <th>País de pasaporte</th>
                         <th>Teléfono</th>
                         <th>Foto Pasaporte</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="res">
+                <tbody id="pasajeros">
                     <!-- Lista de pasajeros se llenará aquí -->
                 </tbody>
             </table>
         </div>
 
         <div class="d-flex justify-content-between mt-3">
-            <button class="btn btn-success" id="reservar-vuelo">Reservar Vuelo</button>
+            <button class="btn btn-success" id="reservar-vuelo" onclick="registrarTickets()">Reservar Vuelo</button>
             <button class="btn btn-danger" id="salir">Salir</button>
         </div>
+        
     </div>
 
     <!-- jQuery -->
     <script src="/Assets/Lib/node_modules/jquery/dist/jquery.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/Js/ConfirmacionReserva.js"></script>
+    <script src="/Js/pasaporte.js"></script>
+    <script src="/Js/Util/loadData.js"></script>
     <script>
         cargarLocalStorage();
+        selectCountries();
     </script>
 </body>
 

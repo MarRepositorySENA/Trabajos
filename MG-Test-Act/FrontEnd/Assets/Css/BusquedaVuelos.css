@@ -1,15 +1,7 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-}
+
 
 .container {
     width: 90%;
-    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
@@ -47,7 +39,8 @@ label {
     margin-bottom: 5px;
 }
 
-input, select {
+input,
+select {
     width: 100%;
     padding: 5px;
     border: 1px solid #ddd;
@@ -67,17 +60,21 @@ table {
     margin-top: 10px;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid #ddd;
 }
 
-th, td {
+th,
+td {
     padding: 8px;
     text-align: left;
 }
 
 /* Estilos para botones */
-button, .btn {
+button,
+.btn {
     padding: 8px 16px;
     margin-top: 10px;
     cursor: pointer;
@@ -89,11 +86,13 @@ button, .btn {
     gap: 5px;
 }
 
-.btn-primary, button {
+.btn-primary,
+button {
     background-color: #007bff;
 }
 
-.btn-primary:hover, button:hover {
+.btn-primary:hover,
+button:hover {
     background-color: #0056b3;
 }
 
@@ -117,39 +116,58 @@ button, .btn {
 .confirmation-actions {
     display: flex;
     align-items: center;
-    gap: 10px; /* Reduce el espacio entre los elementos */
+    gap: 10px;
+    /* Reduce el espacio entre los elementos */
 }
 
 .passenger-input {
-    width: 20px; /* Reduce el tamaño del input */
+    width: 20px;
+    /* Reduce el tamaño del input */
     padding: 5px;
     border-radius: 4px;
     border: 1px solid #ddd;
     font-size: 16px;
     text-align: center;
-    margin-right: 5px; /* Reduce el espacio entre el input y el label */
+    margin-right: 5px;
+    /* Reduce el espacio entre el input y el label */
     box-sizing: border-box;
 }
 
 label[for="passenger-count"] {
-    margin-right: 10px; /* Reduce el espacio entre el label y los botones */
+    margin-right: 10px;
+    /* Reduce el espacio entre el label y los botones */
 }
 
 .btn {
-    padding: 5px 10px; /* Ajusta el padding de los botones */
-    font-size: 14px; /* Ajusta el tamaño de fuente de los botones */
+    padding: 5px 10px;
+    /* Ajusta el padding de los botones */
+    font-size: 14px;
+    /* Ajusta el tamaño de fuente de los botones */
     display: flex;
     align-items: center;
-    
+
 }
 
 .btn i {
-    margin-right: 5px; /* Ajusta el espacio entre el icono y el texto del botón */
+    margin-right: 5px;
+    /* Ajusta el espacio entre el icono y el texto del botón */
 }
 
 .dataTableCenter {
     text-align: center;
-  }
-  .dataTableCenter th, .dataTableCenter td {
+}
+
+.dataTableCenter th,
+.dataTableCenter td {
     text-align: center;
-  }
+}
+
+.btn-light {
+    border-radius: 0%;
+    background-color: #fff;
+    color: black;
+}
+
+.btn-light:focus {
+    background-color: #e6e6e6;
+}
